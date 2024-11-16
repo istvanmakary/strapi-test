@@ -13,6 +13,7 @@
   "dependencies": {
     "@strapi/plugin-cloud": "5.4.0",
     "@strapi/plugin-users-permissions": "5.4.0",
+    "@strapi/provider-upload-aws-s3": "^5.4.0",
     "@strapi/strapi": "5.4.0",
     "better-sqlite3": "11.3.0",
     "pg": "^8.13.1",
@@ -35,5 +36,8 @@
   },
   "strapi": {
     "uuid": "889f3b41-77bb-4bd4-8b85-733ad7d42937"
+  },
+  "dockerfile": {
+    "build": "CMD"
   }
 }

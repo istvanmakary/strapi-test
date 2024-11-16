@@ -27,6 +27,7 @@ RUN apt-get update -qq && \
 # Install node modules
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile --prod=false
+COPY .env.production ./.env
 
 # Copy application code
 COPY . .
@@ -44,11 +45,9 @@ FROM base
 # Copy built application
 COPY --from=build /app /app
 
-# Setup sqlite3 on a separate volume
-RUN mkdir -p /data
-VOLUME /data
+
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-ENV DATABASE_URL="file:///data/sqlite.db"
+
 CMD [ "pnpm", "run", "start" ]
