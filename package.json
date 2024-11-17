@@ -1,43 +1,26 @@
 {
   "name": "strapi-test",
-  "version": "0.1.0",
   "private": true,
-  "description": "A Strapi application",
   "scripts": {
-    "build": "strapi build",
-    "deploy": "strapi deploy",
-    "develop": "strapi develop",
-    "start": "strapi start",
-    "strapi": "strapi"
+    "build": "pnpm turbo build",
+    "dev": "pnpm turbo dev",
+    "dev:strapi-backend": "pnpm turbo dev --filter=backend",
+    "dev:strapi-frontend": "pnpm turbo dev --filter=frontend",
+    "start:strapi-backend": "pnpm --dir apps/strapi-backend start",
+    "start:strapi-frontend": "pnpm --dir apps/strapi-frontend start",
+    "deploy:strapi-frontend": "fly deploy --config fly.strapi-frontend.toml",
+    "deploy:strapi-backend": "fly deploy --config fly.strapi-backend.toml"
   },
-  "dependencies": {
-    "@strapi/plugin-cloud": "5.4.0",
-    "@strapi/plugin-users-permissions": "5.4.0",
-    "@strapi/provider-upload-aws-s3": "^5.4.0",
-    "@strapi/strapi": "5.4.0",
-    "better-sqlite3": "11.3.0",
-    "pg": "^8.13.1",
-    "pg-connection-string": "^2.7.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.0.0",
-    "styled-components": "^6.0.0"
-  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "@flydotio/dockerfile": "^0.5.9",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "typescript": "^5"
+    "turbo": "^2.3.0"
   },
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
     "npm": ">=6.0.0"
   },
-  "strapi": {
-    "uuid": "889f3b41-77bb-4bd4-8b85-733ad7d42937"
-  },
-  "dockerfile": {
-    "build": "CMD"
-  }
+  "packageManager": "pnpm@9.13.0"
 }

@@ -1,8 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-node_modules
-**/node_modules
+/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -11,22 +10,15 @@ node_modules
 !.yarn/releases
 !.yarn/versions
 
-.git
-*Dockerfile*
-*docker-compose*
-
-.tmp
-
 # testing
 /coverage
 
 # next.js
-**/.next/
-.next/
+/.next/
 /out/
 
 # production
-build
+/build
 
 # misc
 .DS_Store

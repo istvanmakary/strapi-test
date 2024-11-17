@@ -9,8 +9,10 @@ primary_region = 'fra'
 [env]
   HOST = "0.0.0.0"
   PORT = "3000"
+  TURBO_TELEMETRY_DISABLED = "1"
 
-[build]
+[build.args]
+  APP="strapi-backend"
 
 [[mounts]]
   source = 'data'

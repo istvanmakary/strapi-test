@@ -16,23 +16,20 @@ RUN npm install turbo --global
 
 # Prune projects
 FROM base AS pruner
-ARG APP
 WORKDIR /app
-COPY ./apps/${APP} ./apps/${APP}
+COPY ./apps/strapi-backend ./apps/strapi-backend
 COPY package.json turbo.json pnpm-lock.yaml pnpm-workspace.yaml  ./
-RUN turbo prune --scope=${APP} --docker
+RUN turbo prune --scope=strapi-backend --docker
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
-ARG APP
-
 WORKDIR /app
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
 
 # Install node modules
-COPY ./apps/${APP}/.env.productio[n] ./.env
+COPY ./apps/strapi-backend/.env.production ./.env
 COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 COPY --from=pruner /app/out/json/ .
 COPY package.json turbo.json pnpm-lock.yaml pnpm-workspace.yaml  ./
@@ -44,7 +41,7 @@ RUN pnpm install --frozen-lockfile --prod=false
 COPY --from=pruner /app/out/full/ .
 
 # Build application
-RUN turbo build --filter=${APP}
+RUN turbo build --filter=strapi-backend
 
 RUN rm -rf ./**/*/src
 
@@ -54,7 +51,6 @@ RUN pnpm prune --prod
 
 # Final stage for app image
 FROM base
-ARG APP
 
 WORKDIR /app
 
@@ -65,6 +61,4 @@ COPY --from=build /app /app
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 
-ENV APP_START="start:${APP}"
-
-CMD sh -c "pnpm run $APP_START"
+CMD [ "pnpm", "run", "start:backend" ]

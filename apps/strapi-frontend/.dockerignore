@@ -11,22 +11,16 @@ node_modules
 !.yarn/releases
 !.yarn/versions
 
-.git
-*Dockerfile*
-*docker-compose*
-
-.tmp
-
 # testing
 /coverage
 
 # next.js
-**/.next/
+/.next/
 .next/
 /out/
 
 # production
-build
+/build
 
 # misc
 .DS_Store

@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "fooldals",
+  "info": {
+    "singularName": "fooldal",
+    "pluralName": "fooldals",
+    "displayName": "Főoldal"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Content": {
+      "type": "blocks"
+    }
+  }
+}

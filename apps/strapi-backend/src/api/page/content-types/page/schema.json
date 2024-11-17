@@ -1,0 +1,25 @@
+{
+  "kind": "singleType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "navigations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::navigation.navigation"
+    }
+  }
+}
